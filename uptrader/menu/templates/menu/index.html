@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load user_template %}
+
+{% block title %}
+Меню
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-4">
+      {% draw_menu 'main_menu' menu_slug %}
+    </div>
+<!--    <div class="col-4">-->
+<!--      {% draw_menu 'main_menu' menu_slug %}-->
+<!--    </div>-->
+  </div>
+</div>
+
+
+<script>
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+</script>
+
+{% endblock %}
