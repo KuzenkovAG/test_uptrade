@@ -1,0 +1,17 @@
+{% load user_template %}
+
+{% for item in start_items %}
+{% if child_items|hash:item %}
+<li>
+  <span class="caret {% if item in activated_items %}caret-down{% endif %}"></span>
+  <a href="{% url 'menu:menu_name' item.slug %}" >{{ item.name|title }}</a>
+  <ul class="nested {% if item in activated_items %}active{% endif %}">
+    {% include 'templatetags/menu_child.html' with start_items=child_items|hash:item child_items=child_items %}
+  </ul>
+</li>
+{% else %}
+<li>
+  <a href="{% url 'menu:menu_name' item.slug %}">{{ item.name|title }}</a>
+</li>
+{% endif %}
+{% endfor %}
